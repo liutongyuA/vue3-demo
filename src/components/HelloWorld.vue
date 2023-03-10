@@ -2,10 +2,11 @@
   <button @click="count++">count is: {{ count }}</button>
   {{ msg }}
   <button @click=greet>点击</button>
+  {{isBook}}
 </template>
 
 <script>
-import { ref ,reactive} from "vue";
+import { ref ,reactive,computed} from "vue";
 export default {
   name: 'HelloWorld',
   // data() {
@@ -19,8 +20,18 @@ export default {
     let greet = function(event) {
       msg[0].b++
     }
-    console.log(count)
-    return{count,greet,msg}
+    const author = reactive({
+      name: 'John Doe',
+      books: [
+        'Vue 2 - Advanced Guide',
+        'Vue 3 - Basic Guide',
+        'Vue 4 - The Mystery'
+      ]
+    })
+    const isBook = computed(()=>{
+      return author.books.length > 0 ? 'Yes' : 'No'
+    })
+    return{count,greet,msg,isBook}
   }
 }
 </script>
