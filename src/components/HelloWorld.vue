@@ -1,19 +1,26 @@
 <template>
-  <h1>{{ msg }}</h1>
   <button @click="count++">count is: {{ count }}</button>
-  <p>Edit <code>components/HelloWorld.vue</code> to test hot module replacement.</p>
+  {{ msg }}
+  <button @click=greet>点击</button>
 </template>
 
 <script>
+import { ref ,reactive} from "vue";
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
-  },
-  data() {
-    return {
-      count: 0
+  // data() {
+  //   return {
+  //     count: 0
+  //   }
+  // },
+  setup(){
+    let count = ref(0)
+    let msg = reactive([{a:1,b:2},3])
+    let greet = function(event) {
+      msg[0].b++
     }
+    console.log(count)
+    return{count,greet,msg}
   }
 }
 </script>
