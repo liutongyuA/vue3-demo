@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { ref ,reactive,computed} from "vue";
+import { ref ,reactive,computed,onMounted} from "vue";
 export default {
   name: 'HelloWorld',
   // data() {
@@ -30,6 +30,9 @@ export default {
     })
     const isBook = computed(()=>{
       return author.books.length > 0 ? 'Yes' : 'No'
+    })
+    onMounted(()=>{
+      console.log(isBook.value+'ghg')
     })
     return{count,greet,msg,isBook}
   }
