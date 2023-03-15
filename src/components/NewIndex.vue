@@ -1,12 +1,9 @@
 <template>
-    <button @click="count++">count is: {{ count }}</button>
-    {{ author }}
-    <button @click=greet>点击</button>
-    {{isBook}}
+    {{ toxun }}
   </template>
   
   <script setup>
-  import { ref ,reactive,computed,onMounted,watch,watchEffect} from "vue";
+  import { ref ,reactive,computed,onMounted,watch,watchEffect,defineProps} from "vue";
       let count = ref(0)
       let msg = reactive([{a:1,b:2},3,{hh:'wc'}])
       let greet = function(event) {
@@ -36,6 +33,13 @@
       })
       onMounted(()=>{
         console.log(isBook.value+'ghg',author.bage)
+      })
+      //接受props
+      defineProps({
+        toxun:{
+          type:String,
+          default:'哈哈哈'
+        }
       })
   </script>
   
