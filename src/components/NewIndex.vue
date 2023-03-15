@@ -1,9 +1,10 @@
 <template>
     {{ toxun }}
+    <button @click="btn">点击</button>
   </template>
   
   <script setup>
-  import { ref ,reactive,computed,onMounted,watch,watchEffect,defineProps} from "vue";
+  import { ref ,reactive,computed,onMounted,watch,watchEffect} from "vue";
       let count = ref(0)
       let msg = reactive([{a:1,b:2},3,{hh:'wc'}])
       let greet = function(event) {
@@ -41,5 +42,9 @@
           default:'哈哈哈'
         }
       })
+      const emit = defineEmits(['emitEvent'])
+      const btn = ()=>{
+        emit('emitEvent',msg)
+      }
   </script>
   
