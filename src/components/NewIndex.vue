@@ -30,6 +30,7 @@
         console.log('改变了')
       })
       watchEffect(()=>{
+        // console.log('什么执行')
       })
       onMounted(()=>{
         console.log(isBook.value+'ghg',author.bage)
