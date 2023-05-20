@@ -1,19 +1,27 @@
 <template>
     {{ toxun }}
-    <button @click="btn">点击</button>
+    <button @click="greet">点击</button>
+    <!-- <button @click="btn">点击</button> -->
+    <button @click="count.id++">count</button>
   </template>
   
   <script setup>
   import { ref ,reactive,computed,onMounted,watch,watchEffect} from "vue";
-      let count = ref(0)
+
+      let count = ref({
+        id:0
+      })
+
+      
       let msg = reactive([{a:1,b:2},3,{hh:'wc'}])
       let greet = function(event) {
         // msg[0].b++
         // msg[2].hh = 'nm'
-        author.name = 'mock'
+        author.obj = {id:1,t:2}
       }
       const author = reactive({
         name: 'John Doe',
+        obj:{id:0,t:2},
         books: [
           'Vue 2 - Advanced Guide',
           'Vue 3 - Basic Guide',
@@ -26,6 +34,14 @@
       const isBook = computed(()=>{
         return author.books.length > 0 ? 'Yes' : 'No'
       })
+
+      watch(()=>author,()=>{
+        console.log('改变了')
+      },{deep:true})
+      watch(count,()=>{
+        console.log('count改变了')
+      },{deep:true})
+
       watch(()=>author.name,()=>{
         console.log('改变了')
       })
