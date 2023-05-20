@@ -1,5 +1,5 @@
 <template>
-  <HelloWorld v-if="active" />
+  <HelloWorld v-if="active" v-model="zi"/>
   <NewIndex v-else :toxun='toxun' @emitEvent="emitEvent"/>
   当前组件是：{{active ?'HelloWorld' :'NewIndex' }}
   <button @click="clickHandler">点击切换组件</button>

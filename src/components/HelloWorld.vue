@@ -3,18 +3,22 @@
   {{ msg }}
   <button @click=greet>点击</button>
   {{isBook}}
+  <button @click=handler>v-model点击传参</button>
 </template>
 
-<script>
+<script setup>
 import { ref ,reactive,computed,onMounted} from "vue";
-export default {
-  name: 'HelloWorld',
-  // data() {
-  //   return {
-  //     count: 0
-  //   }
-  // },
-  setup(){
+
+    /**
+     * 测试vue3 v-model
+     */
+    const emits = defineEmits(['update:modelValue'])
+    const handler = ()=>{
+      emits('update:modelValue','v-model传参值')
+
+    }
+
+
     let count = ref(0)
     let msg = reactive([{a:1,b:2},3])
     let greet = function(event) {
@@ -34,7 +38,5 @@ export default {
     onMounted(()=>{
       console.log(isBook.value+'ghg')
     })
-    return{count,greet,msg,isBook}
-  }
-}
+
 </script>
